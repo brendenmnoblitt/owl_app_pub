@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Overwatch League Player Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+  <h1>Overwatch League Player Showcase</h1>
+  <div id="app">
+      <div v-for="team in teams" :key="team.teamName">
+        <h2 class="team-name">
+            <img :src="team.teamIcon" alt="Team Icon" class="team-icon">
+            ${ team.teamName }
+        </h2>
+          <div class="container">
+              <div class="player-card" v-for="playerData in team.players" :key="playerData.playerId">
+                  <img v-if="playerData.playerMedia && playerData.playerMedia.headshot_url" :src="playerData.playerMedia.headshot_url" alt="Player Headshot">
+                  <div class="player-info" v-if="playerData.playerInfo">
+                      <h3>${ playerData.playerInfo.name }</h3>
+                      <ul>
+                          <li>Number: ${ playerData.playerInfo.number }</li>
+                          <li>Current Team: ${ playerData.currentTeam.teamName }</li>
+                      </ul>
+                      <i class="role-icon dps-icon" v-if="playerData.playerInfo.role === 'OFFENSE'"></i>
+                      <i class="role-icon tank-icon" v-if="playerData.playerInfo.role === 'TANK'"></i>
+                      <i class="role-icon support-icon" v-if="playerData.playerInfo.role === 'SUPPORT'"></i>
+                  </div>
+                  <div class="player-stats-overlay" v-if="playerData.playerStats">
+                    <ul class="stats-list">
+                      <li>
+                        <span class="stat-label">Eliminations</span>
+                        <span class="stat-value"><strong>${ playerData.playerStats.eliminations | formatNumber }</strong></span>
+                      </li>
+                      <li>
+                        <span class="stat-label">Deaths</span>
+                        <span class="stat-value"><strong>${ playerData.playerStats.deaths | formatNumber }</strong></span>
+                      </li>
+                      <li>
+                        <span class="stat-label">Damage Taken</span>
+                        <span class="stat-value"><strong>${ playerData.playerStats.damageTaken | formatNumber }</strong></span>
+                      </li>
+                      <li>
+                        <span class="stat-label">Healing Done</span>
+                        <span class="stat-value"><strong>${ playerData.playerStats.healingDone | formatNumber }</strong></span>
+                      </li>
+                      <li>
+                        <span class="stat-label">Ults Used</span>
+                        <span class="stat-value"><strong>${ playerData.playerStats.ultsUsed | formatNumber }</strong></span>
+                      </li>
+                      <li>
+                        <span class="stat-label">Final Blows</span>
+                        <span class="stat-value"><strong>${ playerData.playerStats.finalBlows | formatNumber }</strong></span>
+                      </li>
+                      <li>
+                        <span class="stat-label">Time Played</span>
+                        <span class="stat-value"><strong>${ playerData.playerStats.timePlayed | formatNumber }</strong></span>
+                      </li>
+                      <li>
+                        <span class="stat-label">Time Spent On Fire</span>
+                        <span class="stat-value"><strong>${ playerData.playerStats.timeSpentOnFire | formatNumber }</strong></span>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="static/js/app.js"></script>
+</body>
+
+</html>

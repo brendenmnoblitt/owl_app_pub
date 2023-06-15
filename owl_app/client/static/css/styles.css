@@ -1,0 +1,195 @@
+body {
+  font-family: 'Roboto Condensed', Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.container {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: #1a1a1a;
+}
+
+.player-card {
+  width: 200px;
+  background-color: #222;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+  position: relative; /* Added position for overlay */
+  overflow: hidden; /* Prevent overlay from overflowing */
+}
+
+.player-card:hover {
+  transform: scale(1.05);
+  /* make dynamic -> box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 0 4px #FDB515; */
+}
+
+.player-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.player-info {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative; /* Add position:relative to the container */
+}
+
+.role-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  position: absolute; /* Add position:absolute */
+  top: 0;
+  right: -10px; /* Adjust the positioning as needed */
+}
+
+.dps-icon {
+  content: url("../images/roles/damage-icon.png");
+}
+
+.tank-icon {
+  content: url("../images/roles/tank-icon.png");
+}
+
+.support-icon {
+  content: url("../images/roles/support-icon.png");
+}
+
+.player-info h3 {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #f4d03f;
+}
+
+.player-info ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.player-info li {
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.player-info li:before {
+  content: "\2022";
+  color: #cc1d34;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.player-stats-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px; /* Add padding to provide space for the stats */
+  box-sizing: border-box; /* Include padding in width and height calculations */
+  text-align: center;
+}
+
+.player-card:hover .player-stats-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.player-card:hover .team-icon {
+  opacity: 0.8;
+}
+
+.player-stats-overlay h3 {
+  font-size: 20px; /* Decrease the font size to fit within the card */
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.player-stats-overlay ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+
+.player-stats-overlay li {
+  font-size: 16px; /* Decrease the font size to fit within the card */
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.player-stats-overlay li strong {
+  color: #f4d03f;
+}
+
+.team-name {
+  font-family: 'Roboto Condensed', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #f4d03f;
+  letter-spacing: 2px;
+}
+
+.team-icon { 
+  display: block;
+  margin: 0 auto;
+  width: 120px; 
+  height: 120px; 
+  margin-bottom: 10px;
+  transition: opacity 0.3s;
+}
+
+.stats-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stats-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-weight: normal;
+}
+
+.stat-value {
+  font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .player-card {
+    width: 100%;
+  }
+}
